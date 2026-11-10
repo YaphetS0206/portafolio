@@ -1,0 +1,43 @@
+# Sistema operativo
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+Desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Vercel y Node
+.vercel/
+node_modules/
+npm-debug.log*
+
+# Variables de entorno y secretos
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+credentials*.json
+secrets*.json
+
+# Documentos personales (CV, borradores)
+*.pdf
+*.docx
+cv/
+privado/
+borradores/
+
+# Temporales y logs
+*.log
+*.tmp
+*.bak
+tmp/

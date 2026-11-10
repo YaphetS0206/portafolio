@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jean Paul Andrade Delgadillo — Senior DevSecOps</title>
+    <meta name="description" content="Jean Paul Andrade Delgadillo — Senior DevSecOps. Automatización, seguridad y despliegue continuo en la nube: cloud, SRE, ciberseguridad, MLOps e IA.">
+    <meta name="author" content="Jean Paul Andrade Delgadillo">
+    <meta property="og:title" content="Jean Paul Andrade Delgadillo — Senior DevSecOps">
+    <meta property="og:description" content="Automatización, seguridad y despliegue continuo en la nube.">
+    <meta property="og:type" content="website">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#0a0a0b" id="meta-tema">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0b'/%3E%3Ctext x='9' y='44' font-family='Helvetica,Arial,sans-serif' font-weight='700' font-size='32' letter-spacing='-2' fill='%23eeede8'%3EJP%3C/text%3E%3Ccircle cx='53' cy='41' r='4' fill='%23ff6a2b'/%3E%3C/svg%3E">
+
+    <!-- Datos estructurados para buscadores -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jean Paul Andrade Delgadillo",
+        "jobTitle": "Senior DevSecOps",
+        "worksFor": { "@type": "Organization", "name": "Interbank" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Lima", "addressCountry": "PE" },
+        "knowsAbout": ["DevSecOps", "Cloud", "Site Reliability Engineering", "CI/CD", "Ciberseguridad", "MLOps", "Inteligencia Artificial"],
+        "sameAs": ["https://www.linkedin.com/in/jeanpaulandrade/", "https://github.com/YaphetS0206"]
+    }
+    </script>
+
+    <!-- Aplica el tema antes de pintar para evitar parpadeos -->
+    <script src="scripts/tema.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <div class="progreso" aria-hidden="true"></div>
+
+    <header class="cabecera">
+        <a class="marca" href="#inicio" aria-label="Inicio">JP<span>.</span></a>
+
+        <nav class="nav" id="nav" aria-label="Principal">
+            <a href="#perfil" data-scramble>Perfil</a>
+            <a href="#stack" data-scramble>Stack</a>
+            <a href="#experiencia" data-scramble>Experiencia</a>
+            <a href="#formacion" data-scramble>Formación</a>
+            <a href="#contacto" data-scramble>Contacto</a>
+        </nav>
+
+        <div class="cabecera-acciones">
+            <button class="tema" id="tema" type="button" aria-label="Cambiar tema">
+                <span class="tema-punto" aria-hidden="true"></span>
+                <span id="tema-texto">Oscuro</span>
+            </button>
+            <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menú</button>
+        </div>
+    </header>
+
+    <main id="contenido">
+
+        <!-- ───────── INICIO ───────── -->
+        <section class="hero" id="inicio">
+            <div class="hero-fondo" aria-hidden="true"></div>
+
+            <div class="hero-texto">
+                <p class="etiqueta hero-etiqueta"><span class="pulso" aria-hidden="true"></span><span id="puesto">Senior DevSecOps · Interbank</span></p>
+
+                <h1 class="hero-nombre" aria-label="Jean Paul Andrade Delgadillo">
+                    <span class="linea" aria-hidden="true"><span class="letras">Jean Paul</span></span>
+                    <span class="linea linea-serif" aria-hidden="true"><span class="letras">Andrade Delgadillo</span></span>
+                </h1>
+
+                <div class="hero-pie">
+                    <p class="hero-rol">
+                        <span class="hero-rol-prefijo">&gt;</span>
+                        <span id="rol">DevSecOps</span><span class="cursor" aria-hidden="true"></span>
+                    </p>
+                    <p class="hero-resumen" id="hero-resumen"></p>
+                    <div class="hero-acciones" id="hero-acciones">
+                        <a class="boton boton-lleno" href="#contacto">Contactar <span aria-hidden="true">→</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual" id="hero-visual">
+                <!-- Globo de red animado: scripts/main.js → globo() -->
+                <canvas class="globo" id="globo" aria-hidden="true"></canvas>
+
+                <!-- Foto opcional: se activa con `foto` en scripts/contenido.js -->
+                <figure class="foto" id="foto" hidden>
+                    <img id="foto-img" src="data:," alt="" width="480" height="480" decoding="async">
+                </figure>
+
+                <!-- Pipeline decorativo -->
+                <div class="pipeline" id="pipeline" aria-hidden="true">
+                    <div class="pipeline-barra">
+                        <span class="pipeline-luces"><i></i><i></i><i></i></span>
+                        <span class="pipeline-archivo">deploy.yml</span>
+                        <span class="pipeline-run" id="pipeline-run">run #128</span>
+                    </div>
+                    <ol class="pipeline-pasos" id="pipeline-pasos"></ol>
+                    <div class="pipeline-pie">
+                        <span class="pipeline-estado" id="pipeline-estado">en cola</span>
+                        <span class="pipeline-progreso"><i id="pipeline-progreso"></i></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ───────── CINTA ───────── -->
+        <div class="cinta" aria-hidden="true">
+            <div class="cinta-pista" id="cinta"></div>
+        </div>
+
+        <!-- ───────── PERFIL ───────── -->
+        <section class="seccion" id="perfil">
+            <p class="etiqueta" data-rev><span class="num">01</span>Perfil</p>
+            <div class="sobre">
+                <div class="sobre-texto" id="sobre-texto"></div>
+                <dl class="datos" id="datos"></dl>
+            </div>
+            <div class="cifras" id="cifras"></div>
+        </section>
+
+        <!-- ───────── STACK ───────── -->
+        <section class="seccion" id="stack">
+            <p class="etiqueta" data-rev><span class="num">02</span>Stack</p>
+            <h2 class="titulo" data-palabras>Con qué <em>trabajo</em></h2>
+            <div class="stack" id="lista-stack"></div>
+        </section>
+
+        <!-- ───────── EXPERIENCIA ───────── -->
+        <section class="seccion" id="experiencia">
+            <p class="etiqueta" data-rev><span class="num">03</span>Experiencia</p>
+            <h2 class="titulo" data-palabras>Dónde he <em>trabajado</em></h2>
+            <ol class="tiempo" id="lista-experiencia"></ol>
+        </section>
+
+        <!-- ───────── FORMACIÓN ───────── -->
+        <section class="seccion" id="formacion">
+            <p class="etiqueta" data-rev><span class="num">04</span>Formación</p>
+            <h2 class="titulo" data-palabras>Qué he <em>estudiado</em></h2>
+            <ul class="certs" id="lista-formacion"></ul>
+        </section>
+
+        <!-- ───────── CONTACTO ───────── -->
+        <section class="seccion contacto" id="contacto">
+            <p class="etiqueta" data-rev><span class="num">05</span>Contacto</p>
+            <h2 class="contacto-titulo" data-palabras>Hablemos<em>.</em></h2>
+            <div class="contacto-linea" data-rev>
+                <a class="contacto-correo" id="contacto-correo" href="#"></a>
+                <button class="copiar" id="copiar" type="button" aria-live="polite">Copiar</button>
+            </div>
+            <ul class="redes" id="redes"></ul>
+        </section>
+    </main>
+
+    <footer class="pie">
+        <p>© <span id="anio">2026</span> Jean Paul Andrade Delgadillo</p>
+        <a href="#inicio">Volver arriba ↑</a>
+    </footer>
+
+    <noscript>
+        <div class="sin-js">
+            <p><strong>Jean Paul Andrade Delgadillo</strong> — Senior DevSecOps · Lima, Perú.</p>
+            <p>Automatización, seguridad y despliegue continuo en la nube (GCP, AWS, Azure).</p>
+            <p><a href="https://www.linkedin.com/in/jeanpaulandrade/">LinkedIn</a> · <a href="https://github.com/YaphetS0206">GitHub</a></p>
+            <p>Activa JavaScript para ver el portafolio completo.</p>
+        </div>
+    </noscript>
+
+    <script src="scripts/iconos.js"></script>
+    <script src="scripts/contenido.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
