@@ -114,12 +114,13 @@ export const TEXTOS: Record<Idioma, Textos> = {
             datos: [
                 { etiqueta: 'Ubicación', valor: 'Lima, Perú' },
                 { etiqueta: 'Enfoque', valor: 'IA aplicada al SDLC · Seguridad continua' },
+                { etiqueta: 'Nubes', valor: 'AWS · Google Cloud · Azure' },
                 { etiqueta: 'Idiomas', valor: 'Español nativo · Inglés fluido (C2 escrito) · Francés B2 oral' },
             ],
             cifras: [
-                { numero: 7, sufijo: '+', texto: 'años de experiencia' },
-                { numero: 3, texto: 'países: Perú, Brasil y México' },
-                { numero: 3, texto: 'nubes: GCP, AWS y Azure' },
+                { numero: 7, sufijo: '+', texto: 'años automatizando entregas en Perú, Brasil y México' },
+                { numero: 32, texto: 'equipos llevados a Trunk-Based Development' },
+                { numero: 15, texto: 'equipos de DataOps con pipelines automatizados' },
                 { numero: 100, texto: 'repositorios migrados a GitHub' },
             ],
         },
@@ -144,8 +145,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
                     titulo: 'Senior DevSecOps Engineer',
                     lugar: 'Interbank · Lima',
                     logros: [
-                        'Diseño pipelines de CI/CD en GitHub Actions para 15 equipos de DataOps y pipelines de MLOps.',
-                        'Lidero la integración de agentes de IA (GitHub Copilot y Claude) en el SDLC: revisión de pull requests y triaje de hallazgos SAST.',
+                        'Lidero la integración de agentes de IA (GitHub Copilot y Claude) en el SDLC: uno revisa pull requests y señala riesgos; otro clasifica hallazgos SAST, filtra falsos positivos y propone correcciones.',
+                        'Diseñé un agente de IA que valida cambios de esquema y calidad de datos antes de cada pase a producción.',
+                        'Automaticé CI/CD en GitHub Actions para 15 equipos de DataOps y el camino de los modelos de ML hasta producción.',
                         'Migré 100 repositorios de Bitbucket a GitHub y medí la entrega con tableros de métricas DORA.',
                     ],
                 },
@@ -156,7 +158,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
                     logros: [
                         'Implementé pentesting continuo (CPT) dentro de pipelines y servicios.',
                         'Integré a los equipos de Machine Learning y datos con DevOps (MLOps y DataOps).',
-                        'Estandaricé la observabilidad con métricas DORA y reduje costos de nube y de CI/CD.',
+                        'Automaticé despliegues controlados a producción según el calendario de negocio y reduje tiempos y costos de los runners.',
                     ],
                 },
                 {
@@ -261,12 +263,13 @@ export const TEXTOS: Record<Idioma, Textos> = {
             datos: [
                 { etiqueta: 'Location', valor: 'Lima, Peru' },
                 { etiqueta: 'Focus', valor: 'AI in the SDLC · Continuous security' },
+                { etiqueta: 'Clouds', valor: 'AWS · Google Cloud · Azure' },
                 { etiqueta: 'Languages', valor: 'Spanish native · English fluent (C2 writing) · French B2 speaking' },
             ],
             cifras: [
-                { numero: 7, sufijo: '+', texto: 'years of experience' },
-                { numero: 3, texto: 'countries: Peru, Brazil and Mexico' },
-                { numero: 3, texto: 'clouds: GCP, AWS and Azure' },
+                { numero: 7, sufijo: '+', texto: 'years automating delivery in Peru, Brazil and Mexico' },
+                { numero: 32, texto: 'teams moved to Trunk-Based Development' },
+                { numero: 15, texto: 'DataOps teams on automated pipelines' },
                 { numero: 100, texto: 'repositories migrated to GitHub' },
             ],
         },
@@ -291,8 +294,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
                     titulo: 'Senior DevSecOps Engineer',
                     lugar: 'Interbank · Lima',
                     logros: [
-                        'Design GitHub Actions CI/CD pipelines for 15 DataOps teams, plus MLOps pipelines.',
-                        'Lead the integration of AI agents (GitHub Copilot and Claude) into the SDLC: pull request review and SAST triage.',
+                        'Lead the integration of AI agents (GitHub Copilot and Claude) into the SDLC: one reviews pull requests and flags risks; another triages SAST findings, filters false positives and proposes fixes.',
+                        'Designed an AI agent that validates schema changes and data quality before every production release.',
+                        'Automated GitHub Actions CI/CD for 15 DataOps teams and the path from ML model code to production.',
                         'Migrated 100 repositories from Bitbucket to GitHub and track delivery with DORA dashboards.',
                     ],
                 },
@@ -303,7 +307,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
                     logros: [
                         'Embedded continuous penetration testing (CPT) into pipelines and services.',
                         'Brought Machine Learning and data teams into DevOps (MLOps and DataOps).',
-                        'Standardized observability around DORA metrics and reduced cloud and CI/CD costs.',
+                        'Automated controlled production deployments tied to the business calendar and cut runner times and costs.',
                     ],
                 },
                 {

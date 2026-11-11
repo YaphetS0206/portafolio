@@ -1,4 +1,13 @@
 ---
+// Fuentes servidas desde el propio sitio (licencia OFL), solo el subconjunto latino
+import '@fontsource/inter-tight/latin-400.css';
+import '@fontsource/inter-tight/latin-500.css';
+import '@fontsource/inter-tight/latin-600.css';
+import '@fontsource/inter-tight/latin-700.css';
+import '@fontsource/instrument-serif/latin-400.css';
+import '@fontsource/instrument-serif/latin-400-italic.css';
+import '@fontsource/jetbrains-mono/latin-400.css';
+import '@fontsource/jetbrains-mono/latin-500.css';
 import '../styles/global.css';
 import { TEXTOS, RUTA, IDIOMAS, type Idioma } from '../i18n/textos';
 import { NOMBRE, CONTACTO } from '../data/perfil';
@@ -61,13 +70,6 @@ const ui = { ...t.ui, pipeline: t.pipeline, roles: t.roles };
 
         <!-- Idioma y tema antes de pintar -->
         <script is:inline src="/inicio.js"></script>
-
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-            rel="stylesheet"
-        />
 
         {!noindex && <script type="application/ld+json" set:html={JSON.stringify(personaLd)} />}
         <script type="application/json" id="ui" set:html={JSON.stringify(ui)} />

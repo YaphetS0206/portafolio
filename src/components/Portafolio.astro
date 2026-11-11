@@ -29,8 +29,8 @@ const cv = CV[idioma];
 const nombreCv = cv.split('/').pop();
 const secciones = [
     ['perfil', t.nav.perfil],
-    ['lab', t.nav.lab],
     ['experiencia', t.nav.experiencia],
+    ['lab', t.nav.lab],
     ['stack', t.nav.stack],
     ['formacion', t.nav.formacion],
     ['contacto', t.nav.contacto],
@@ -185,6 +185,32 @@ const num = (id: string) => String(secciones.findIndex(([s]) => s === id) + 1).p
             </div>
         </section>
 
+        <!-- ───────── EXPERIENCIA ───────── -->
+        <section class="seccion" id="experiencia">
+            <p class="etiqueta" data-rev><span class="num">{num('experiencia')}</span>{t.experiencia.etiqueta}</p>
+            <h2 class="titulo" data-palabras>{t.experiencia.titulo[0]} <em>{t.experiencia.titulo[1]}</em></h2>
+            <ol class="tiempo">
+                {
+                    t.experiencia.items.map((h) => (
+                        <li class:list={['hito', { 'hito-actual': h.actual }]} data-rev>
+                            <span class="hito-periodo">{h.periodo}</span>
+                            <div class="hito-cuerpo">
+                                <h3>{h.titulo}</h3>
+                                <p class="hito-lugar">{h.lugar}</p>
+                                {h.logros.length > 0 && (
+                                    <ul class="hito-logros">
+                                        {h.logros.map((l) => (
+                                            <li>{l}</li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </div>
+                        </li>
+                    ))
+                }
+            </ol>
+        </section>
+
         <!-- ───────── LABORATORIO ───────── -->
         <section class="seccion" id="lab">
             <p class="etiqueta" data-rev><span class="num">{num('lab')}</span>{t.lab.etiqueta}</p>
@@ -260,32 +286,6 @@ const num = (id: string) => String(secciones.findIndex(([s]) => s === id) + 1).p
                     </div>
                 )
             }
-        </section>
-
-        <!-- ───────── EXPERIENCIA ───────── -->
-        <section class="seccion" id="experiencia">
-            <p class="etiqueta" data-rev><span class="num">{num('experiencia')}</span>{t.experiencia.etiqueta}</p>
-            <h2 class="titulo" data-palabras>{t.experiencia.titulo[0]} <em>{t.experiencia.titulo[1]}</em></h2>
-            <ol class="tiempo">
-                {
-                    t.experiencia.items.map((h) => (
-                        <li class:list={['hito', { 'hito-actual': h.actual }]} data-rev>
-                            <span class="hito-periodo">{h.periodo}</span>
-                            <div class="hito-cuerpo">
-                                <h3>{h.titulo}</h3>
-                                <p class="hito-lugar">{h.lugar}</p>
-                                {h.logros.length > 0 && (
-                                    <ul class="hito-logros">
-                                        {h.logros.map((l) => (
-                                            <li>{l}</li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </div>
-                        </li>
-                    ))
-                }
-            </ol>
         </section>
 
         <!-- ───────── STACK ───────── -->
