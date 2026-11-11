@@ -1,0 +1,25 @@
+---
+/* Icono de marca en SVG (Simple Icons). Si no existe, muestra las iniciales. */
+import { ICONOS } from '../data/iconos';
+
+interface Props {
+    nombre?: string;
+    texto?: string; // para las iniciales cuando no hay icono
+}
+const { nombre, texto = '' } = Astro.props;
+const dato = nombre ? ICONOS[nombre] : undefined;
+const partes = texto.split(/\s+/);
+const iniciales = (partes.length > 1 ? partes[0][0] + partes[1][0] : texto.slice(0, 2)).toUpperCase();
+---
+
+{
+    dato ? (
+        <svg class="icono" viewBox="0 0 24 24" aria-hidden="true">
+            <path d={dato.d} />
+        </svg>
+    ) : texto ? (
+        <span class="icono icono-texto" aria-hidden="true">
+            {iniciales}
+        </span>
+    ) : null
+}

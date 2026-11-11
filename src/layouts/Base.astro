@@ -1,0 +1,81 @@
+---
+import '../styles/global.css';
+import { TEXTOS, RUTA, IDIOMAS, type Idioma } from '../i18n/textos';
+import { NOMBRE, CONTACTO } from '../data/perfil';
+
+interface Props {
+    idioma: Idioma;
+    titulo?: string;
+    noindex?: boolean;
+}
+const { idioma, titulo, noindex = false } = Astro.props;
+const t = TEXTOS[idioma];
+const sitio = Astro.site ?? new URL('https://portafolio-omega-six-11.vercel.app');
+const url = (i: Idioma) => new URL(RUTA[i], sitio).href;
+
+const personaLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: NOMBRE,
+    jobTitle: 'Senior DevSecOps Engineer',
+    worksFor: { '@type': 'Organization', name: 'Interbank' },
+    address: { '@type': 'PostalAddress', addressLocality: 'Lima', addressCountry: 'PE' },
+    knowsAbout: ['DevSecOps', 'MLOps', 'DataOps', 'AI agents', 'Cloud', 'Site Reliability Engineering', 'CI/CD', 'Cybersecurity'],
+    sameAs: CONTACTO.redes.map((r) => r.url),
+    url: url(idioma),
+};
+
+// Textos que necesita el JavaScript del cliente
+const ui = { ...t.ui, pipeline: t.pipeline, roles: t.roles };
+---
+
+<!doctype html>
+<html lang={idioma}>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{titulo ?? t.meta.titulo}</title>
+        <meta name="description" content={t.meta.descripcion} />
+        <meta name="author" content={NOMBRE} />
+        {noindex && <meta name="robots" content="noindex" />}
+        {
+            !noindex && (
+                <>
+                    <link rel="canonical" href={url(idioma)} />
+                    {IDIOMAS.map((i) => (
+                        <link rel="alternate" hreflang={i} href={url(i)} />
+                    ))}
+                    <link rel="alternate" hreflang="x-default" href={url('es')} />
+                </>
+            )
+        }
+        <meta property="og:title" content={t.meta.titulo} />
+        <meta property="og:description" content={t.meta.descripcion} />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content={t.meta.locale} />
+        <meta property="og:url" content={url(idioma)} />
+        <meta property="og:image" content={new URL('/img/foto.jpg', sitio).href} />
+        <meta name="color-scheme" content="light dark" />
+        <meta name="theme-color" content="#0a0a0b" id="meta-tema" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+        <!-- Idioma y tema antes de pintar -->
+        <script is:inline src="/inicio.js"></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+
+        {!noindex && <script type="application/ld+json" set:html={JSON.stringify(personaLd)} />}
+        <script type="application/json" id="ui" set:html={JSON.stringify(ui)} />
+    </head>
+    <body>
+        <slot />
+        <script>
+            import '../scripts/main.ts';
+        </script>
+    </body>
+</html>

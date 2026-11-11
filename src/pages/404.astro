@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import { TEXTOS } from '../i18n/textos';
+
+const es = TEXTOS.es.error404;
+const en = TEXTOS.en.error404;
+---
+
+<Base idioma="es" titulo="404 — Jean Paul Andrade Delgadillo" noindex>
+    <main class="error-404">
+        <p class="etiqueta"><span class="num">404</span>exit code 1</p>
+        <h1 class="titulo">{es.titulo[0]} <em>{es.titulo[1]}</em>.</h1>
+        <p class="error-en" lang="en">{en.titulo[0]} {en.titulo[1]}.</p>
+        <a class="boton boton-lleno" href="/">{es.volver} <span aria-hidden="true">→</span></a>
+    </main>
+</Base>
