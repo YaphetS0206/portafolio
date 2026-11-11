@@ -33,8 +33,9 @@ secrets*.json
 
 # Documentos personales (CV, borradores)
 *.pdf
+!public/cv/*.pdf
 *.docx
-cv/
+/cv/
 privado/
 borradores/
 

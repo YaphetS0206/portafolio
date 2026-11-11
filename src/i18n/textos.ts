@@ -42,6 +42,7 @@ export interface Textos {
         arriba: string;
         idioma: string;
         foto: string;
+        cv: string;
     };
     puesto: string;
     roles: string[];
@@ -100,6 +101,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
             arriba: 'Volver arriba ↑',
             idioma: 'Idioma',
             foto: 'Foto de Jean Paul Andrade Delgadillo',
+            cv: 'Descargar CV',
         },
         puesto: 'Senior DevSecOps · Interbank',
         roles: ['Agentes de IA', 'DevSecOps', 'MLOps & DataOps', 'Cloud & SRE'],
@@ -246,6 +248,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
             arriba: 'Back to top ↑',
             idioma: 'Language',
             foto: 'Photo of Jean Paul Andrade Delgadillo',
+            cv: 'Download CV',
         },
         puesto: 'Senior DevSecOps · Interbank',
         roles: ['AI agents', 'DevSecOps', 'MLOps & DataOps', 'Cloud & SRE'],

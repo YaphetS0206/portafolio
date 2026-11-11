@@ -8,6 +8,12 @@ import type { Bilingue } from '../i18n/textos';
 export const NOMBRE = 'Jean Paul Andrade Delgadillo';
 export const FOTO = '/img/foto.jpg'; // déjalo vacío ('') para mostrar solo la animación
 
+// CV para descargar (en public/cv/). Uno por idioma.
+export const CV = {
+    es: '/cv/Jean_Paul_Andrade_Delgadillo_CV_ES.pdf',
+    en: '/cv/Jean_Paul_Andrade_Delgadillo_CV_EN.pdf',
+};
+
 export const CONTACTO = {
     correo: 'jean-paul-a@hotmail.com', // déjalo vacío ('') si no quieres mostrarlo
     redes: [
