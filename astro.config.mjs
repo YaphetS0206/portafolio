@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
     // Cambia esta URL si conectas un dominio propio
-    site: 'https://portafolio-omega-six-11.vercel.app',
+    site: 'https://jeanpaulad.vercel.app',
     trailingSlash: 'never',
     build: {
         format: 'directory',

@@ -32,6 +32,10 @@ npm run build    # genera dist/
 npm run preview  # sirve dist/
 ```
 
+> **Al añadir o actualizar dependencias** usa `npx npm@10 install <paquete>`.
+> El npm 11 de macOS quita del `package-lock.json` paquetes que Vercel necesita en Linux
+> y el despliegue falla con `npm ci ... Missing: @emnapi/... from lock file`.
+
 ## Publicar en Vercel
 
 `vercel.json` ya indica el framework (Astro), el comando de build y la carpeta `dist`.

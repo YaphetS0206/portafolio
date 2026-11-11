@@ -19,7 +19,7 @@ interface Props {
 }
 const { idioma, titulo, noindex = false } = Astro.props;
 const t = TEXTOS[idioma];
-const sitio = Astro.site ?? new URL('https://portafolio-omega-six-11.vercel.app');
+const sitio = Astro.site ?? new URL('https://jeanpaulad.vercel.app');
 const url = (i: Idioma) => new URL(RUTA[i], sitio).href;
 
 const personaLd = {
