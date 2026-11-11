@@ -13,13 +13,13 @@ const CONTENIDO = {
     // Tu foto en el centro de la animación de la portada.
     // Guárdala en img/foto.jpg (cuadrada, mín. 800×800) y escribe: foto: 'img/foto.jpg'
     // Si lo dejas vacío, se muestra solo la animación.
-    foto: '',
+    foto: 'img/foto.jpg',
 
     // Línea pequeña sobre tu nombre
     puesto: 'Senior DevSecOps · Interbank',
 
     // Palabras que rotan bajo tu nombre
-    roles: ['DevSecOps', 'Cloud & SRE', 'MLOps & IA', 'Ciberseguridad'],
+    roles: ['DevSecOps', 'MLOps & DataOps', 'Cloud & SRE', 'Agentes de IA'],
 
     // Una sola frase: qué haces
     resumen: 'Automatizo, aseguro y despliego software en la nube.',
@@ -29,12 +29,12 @@ const CONTENIDO = {
 
     // Perfil: un párrafo corto (se ilumina al hacer scroll)
     sobreMi: [
-        'Ingeniero de Sistemas especializado en DevSecOps. Integro seguridad y automatización en todo el ciclo de vida del software, y aplico IA para mejorar operaciones y despliegues.',
+        'Ingeniero de Sistemas especializado en DevSecOps. Construyo plataformas CI/CD seguras e infraestructura cloud para banca, logística y consumo masivo, y hoy lidero la adopción de agentes de IA en el ciclo de desarrollo.',
     ],
 
     // Cifras clave (se animan al aparecer)
     cifras: [
-        { numero: 6, sufijo: '+', texto: 'años de experiencia' },
+        { numero: 7, sufijo: '+', texto: 'años de experiencia' },
         { numero: 3, sufijo: '', texto: 'países: Perú, Brasil y México' },
         { numero: 3, sufijo: '', texto: 'nubes: GCP, AWS y Azure' },
         { numero: 3, sufijo: '', texto: 'bancos: Interbank, Consubanco y Scotiabank' },
@@ -42,7 +42,7 @@ const CONTENIDO = {
 
     datos: [
         { etiqueta: 'Ubicación', valor: 'Lima, Perú' },
-        { etiqueta: 'Idiomas', valor: 'Español nativo · Inglés C1 · Francés básico' },
+        { etiqueta: 'Idiomas', valor: 'Español nativo · Inglés fluido (C2 escrito) · Francés B2 oral' },
     ],
 
     stack: [
@@ -55,6 +55,7 @@ const CONTENIDO = {
                 { nombre: 'JavaScript', icono: 'javascript' },
                 { nombre: 'Bash', icono: 'gnubash' },
                 { nombre: 'Groovy', icono: 'apachegroovy' },
+                { nombre: 'PowerShell' },
                 { nombre: 'SQL' },
             ],
         },
@@ -65,6 +66,7 @@ const CONTENIDO = {
                 { nombre: 'AWS', icono: 'amazonaws' },
                 { nombre: 'Azure', icono: 'microsoftazure' },
                 { nombre: 'Terraform', icono: 'terraform' },
+                { nombre: 'Terragrunt' },
                 { nombre: 'Kubernetes', icono: 'kubernetes' },
                 { nombre: 'Docker', icono: 'docker' },
                 { nombre: 'Ansible', icono: 'ansible' },
@@ -86,9 +88,11 @@ const CONTENIDO = {
                 { nombre: 'SonarQube', icono: 'sonarqube' },
                 { nombre: 'Checkmarx', icono: 'checkmarx' },
                 { nombre: 'Fortify' },
+                { nombre: 'Black Duck' },
                 { nombre: 'CodeQL', icono: 'github' },
                 { nombre: 'Burp Suite', icono: 'portswigger' },
                 { nombre: 'OWASP ZAP' },
+                { nombre: 'Fluid Attacks' },
                 { nombre: 'Vault', icono: 'vault' },
             ],
         },
@@ -101,11 +105,14 @@ const CONTENIDO = {
             ],
         },
         {
-            titulo: 'Datos y MLOps',
+            titulo: 'Datos, MLOps e IA',
             items: [
+                { nombre: 'GitHub Copilot', icono: 'githubcopilot' },
+                { nombre: 'Claude', icono: 'claude' },
                 { nombre: 'Databricks', icono: 'databricks' },
                 { nombre: 'Airflow', icono: 'apacheairflow' },
                 { nombre: 'MLflow', icono: 'mlflow' },
+                { nombre: 'Kubeflow' },
                 { nombre: 'TensorFlow', icono: 'tensorflow' },
                 { nombre: 'Kafka', icono: 'apachekafka' },
                 { nombre: 'BigQuery', icono: 'googlebigquery' },
@@ -120,10 +127,14 @@ const CONTENIDO = {
     experiencia: [
         {
             actual: true,
-            periodo: 'Actualidad',
-            titulo: 'Senior DevSecOps',
-            lugar: 'Interbank',
-            logros: [], // ← añade aquí 2–3 logros cuando quieras
+            periodo: 'Jun 2026 — Actualidad',
+            titulo: 'Senior DevSecOps Engineer',
+            lugar: 'Interbank · Lima',
+            logros: [
+                'Diseño pipelines de CI/CD en GitHub Actions para 15 equipos de DataOps y pipelines de MLOps.',
+                'Lidero la integración de agentes de IA (GitHub Copilot y Claude) en el SDLC: revisión de pull requests y triaje de hallazgos SAST.',
+                'Migré 100 repositorios de Bitbucket a GitHub y medí la entrega con tableros de métricas DORA.',
+            ],
         },
         {
             periodo: 'Feb 2025 — Dic 2025',
@@ -160,6 +171,15 @@ const CONTENIDO = {
             logros: [
                 'Impulsé Trunk-Based Development como estándar y reduje costos en Azure.',
                 'Aprovisioné infraestructura con Terraform y Ansible.',
+            ],
+        },
+        {
+            periodo: 'Mar 2022 — Oct 2022',
+            titulo: 'Site Reliability Engineer',
+            lugar: '99minutos · Ciudad de México',
+            logros: [
+                'Lideré la adopción de Trunk-Based Development en 32 equipos de desarrollo.',
+                'Creé plantillas de pipelines adoptadas como estándar de CI/CD para todos los equipos.',
             ],
         },
         {
