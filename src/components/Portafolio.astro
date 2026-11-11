@@ -1,0 +1,373 @@
+---
+/* Página completa del portafolio. Se usa en / (español) y /en (inglés). */
+import Base from '../layouts/Base.astro';
+import Icono from './Icono.astro';
+import { TEXTOS, RUTA, IDIOMAS, tr, type Idioma } from '../i18n/textos';
+import { NOMBRE, FOTO, CONTACTO, PROYECTOS, STACK } from '../data/perfil';
+import { ICONOS } from '../data/iconos';
+
+interface Props {
+    idioma: Idioma;
+}
+const { idioma } = Astro.props;
+const t = TEXTOS[idioma];
+const [nombre1, ...resto] = NOMBRE.split(' ');
+const lineaNombre = [nombre1 + ' ' + resto[0], resto.slice(1).join(' ')]; // "Jean Paul" / "Andrade Delgadillo"
+
+// Los colores de marca casi negros o casi blancos no se verían en uno de los temas
+function colorMarca(icono?: string) {
+    const c = icono ? ICONOS[icono]?.c : undefined;
+    if (!c) return undefined;
+    const n = parseInt(c.slice(1), 16);
+    const l = (0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)) / 255;
+    return l > 0.22 && l < 0.9 ? c : undefined;
+}
+
+const externo = { target: '_blank', rel: 'noopener noreferrer' };
+const anio = new Date().getFullYear();
+const secciones = [
+    ['perfil', t.nav.perfil],
+    ['lab', t.nav.lab],
+    ['experiencia', t.nav.experiencia],
+    ['stack', t.nav.stack],
+    ['formacion', t.nav.formacion],
+    ['contacto', t.nav.contacto],
+] as const;
+const num = (id: string) => String(secciones.findIndex(([s]) => s === id) + 1).padStart(2, '0');
+---
+
+<Base idioma={idioma}>
+    <a class="saltar" href="#contenido">{t.ui.saltar}</a>
+    <div class="progreso" aria-hidden="true"></div>
+
+    <header class="cabecera">
+        <a class="marca" href="#inicio" aria-label={NOMBRE}>JP<span>.</span></a>
+
+        <nav class="nav" id="nav" aria-label="Principal">
+            {secciones.map(([id, texto]) => <a href={`#${id}`} data-scramble>{texto}</a>)}
+        </nav>
+
+        <div class="cabecera-acciones">
+            <div class="idiomas" role="group" aria-label={t.ui.idioma}>
+                {
+                    IDIOMAS.map((i) => (
+                        <a
+                            href={RUTA[i]}
+                            hreflang={i}
+                            lang={i}
+                            data-idioma={i}
+                            aria-current={i === idioma ? 'page' : undefined}
+                        >
+                            {i.toUpperCase()}
+                        </a>
+                    ))
+                }
+            </div>
+            <button class="tema" id="tema" type="button" aria-label={t.ui.aOscuro}>
+                <span class="tema-punto" aria-hidden="true"></span>
+                <span id="tema-texto">{t.ui.oscuro}</span>
+            </button>
+            <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav">{t.ui.menu}</button>
+        </div>
+    </header>
+
+    <main id="contenido">
+        <!-- ───────── PORTADA ───────── -->
+        <section class="hero" id="inicio">
+            <div class="hero-fondo" aria-hidden="true"></div>
+
+            <div class="hero-texto">
+                <p class="etiqueta hero-etiqueta"><span class="pulso" aria-hidden="true"></span>{t.puesto}</p>
+
+                <h1 class="hero-nombre" aria-label={NOMBRE}>
+                    <span class="linea" aria-hidden="true"><span class="letras">{lineaNombre[0]}</span></span>
+                    <span class="linea linea-serif" aria-hidden="true"><span class="letras">{lineaNombre[1]}</span></span>
+                </h1>
+
+                <div class="hero-pie">
+                    <p class="hero-rol">
+                        <span class="hero-rol-prefijo" aria-hidden="true">&gt;</span>
+                        <span id="rol">{t.roles[0]}</span><span class="cursor" aria-hidden="true"></span>
+                    </p>
+                    <p class="hero-resumen">{t.resumen}</p>
+                    <div class="hero-acciones">
+                        <a class="boton boton-lleno" href="#contacto">{t.ui.contactar} <span aria-hidden="true">→</span></a>
+                        {
+                            CONTACTO.redes.map((r) => (
+                                <a class="boton" href={r.url} {...externo}>
+                                    <Icono nombre={r.icono} />
+                                    {r.nombre}
+                                </a>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class:list={['hero-visual', { 'con-foto': FOTO }]} id="hero-visual">
+                <canvas class="globo" id="globo" aria-hidden="true"></canvas>
+                {
+                    FOTO && (
+                        <figure class="foto">
+                            <img src={FOTO} alt={t.ui.foto} width="500" height="500" decoding="async" fetchpriority="high" />
+                        </figure>
+                    )
+                }
+                <div class="pipeline" aria-hidden="true">
+                    <div class="pipeline-barra">
+                        <span class="luces"><i></i><i></i><i></i></span>
+                        <span class="pipeline-archivo">deploy.yml</span>
+                        <span class="pipeline-run" id="pipeline-run">run #128</span>
+                    </div>
+                    <ol class="pipeline-pasos" id="pipeline-pasos">
+                        {
+                            [
+                                ['build', '12s'],
+                                ['test', '34s'],
+                                ['ai review', '9s'],
+                                ['sast · dast', '48s'],
+                                ['deploy → prod', '21s'],
+                            ].map(([n, s]) => (
+                                <li class="paso">
+                                    <span class="paso-marca" />
+                                    <span class="paso-nombre">{n}</span>
+                                    <span class="paso-tiempo">{s}</span>
+                                </li>
+                            ))
+                        }
+                    </ol>
+                    <div class="pipeline-pie">
+                        <span class="pipeline-estado" id="pipeline-estado">{t.pipeline.enCola}</span>
+                        <span class="pipeline-progreso"><i id="pipeline-progreso"></i></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ───────── PERFIL ───────── -->
+        <section class="seccion" id="perfil">
+            <p class="etiqueta" data-rev><span class="num">{num('perfil')}</span>{t.perfil.etiqueta}</p>
+            <div class="sobre">
+                <p class="sobre-texto iluminar">{t.perfil.texto}</p>
+                <dl class="datos">
+                    {
+                        t.perfil.datos.map((d) => (
+                            <div class="dato" data-rev>
+                                <dt>{d.etiqueta}</dt>
+                                <dd>{d.valor}</dd>
+                            </div>
+                        ))
+                    }
+                </dl>
+            </div>
+            <div class="cifras">
+                {
+                    t.perfil.cifras.map((c, i) => (
+                        <div class="cifra" data-rev data-d={i * 90}>
+                            <p class="cifra-num">
+                                <span class="contar" data-hasta={c.numero}>
+                                    {c.numero}
+                                </span>
+                                {c.sufijo && <span class="cifra-sufijo">{c.sufijo}</span>}
+                            </p>
+                            <p class="cifra-texto">{c.texto}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <!-- ───────── LABORATORIO ───────── -->
+        <section class="seccion" id="lab">
+            <p class="etiqueta" data-rev><span class="num">{num('lab')}</span>{t.lab.etiqueta}</p>
+            <div class="lab-cab">
+                <h2 class="titulo" data-palabras>{t.lab.titulo[0]} <em>{t.lab.titulo[1]}</em></h2>
+                <p class="lab-intro" data-rev>{t.lab.intro}</p>
+            </div>
+
+            {
+                PROYECTOS.length ? (
+                    <ul class="proyectos">
+                        {PROYECTOS.map((p, i) => (
+                            <li class:list={['proyecto', { destacado: p.destacado }]} data-rev data-d={i * 90}>
+                                <div class="proyecto-cab">
+                                    <span class="proyecto-ruta">{p.ruta}</span>
+                                    <span class={`estado estado-${p.estado}`}>
+                                        <i aria-hidden="true" />
+                                        {t.lab.estados[p.estado]}
+                                    </span>
+                                </div>
+                                <h3 class="proyecto-nombre">{tr(p.nombre, idioma)}</h3>
+                                <p class="proyecto-desc">{tr(p.descripcion, idioma)}</p>
+                                <ul class="proyecto-tags">
+                                    {p.tags.map((tag) => (
+                                        <li>{tag}</li>
+                                    ))}
+                                </ul>
+                                <div class="proyecto-enlaces">
+                                    {p.repo ? (
+                                        <a class="enlace" href={p.repo} {...externo}>
+                                            <Icono nombre="github" />
+                                            {t.lab.codigo} <span aria-hidden="true">↗</span>
+                                        </a>
+                                    ) : (
+                                        <span class="enlace enlace-off">{t.lab.privado}</span>
+                                    )}
+                                    {p.demo && (
+                                        <a class="enlace" href={p.demo} {...externo}>
+                                            {t.lab.demo} <span aria-hidden="true">↗</span>
+                                        </a>
+                                    )}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <div class="lab-vacio" data-rev>
+                        <div class="terminal" aria-hidden="true">
+                            <div class="terminal-barra">
+                                <span class="luces">
+                                    <i />
+                                    <i />
+                                    <i />
+                                </span>
+                                <span>~/lab</span>
+                            </div>
+                            <div class="terminal-cuerpo">
+                                <p>
+                                    <span class="prompt">$</span> <span class="escribir" data-texto={t.lab.vacio.comando} />
+                                    <span class="cursor" />
+                                </p>
+                                <p class="terminal-salida" id="terminal-salida">
+                                    Initialized empty Git repository in ~/lab/{t.lab.vacio.comando.split(' ').pop()}/.git/
+                                </p>
+                            </div>
+                        </div>
+                        <p class="lab-vacio-texto">{t.lab.vacio.texto}</p>
+                        <div class="huecos" aria-hidden="true">
+                            <span />
+                            <span />
+                            <span />
+                        </div>
+                    </div>
+                )
+            }
+        </section>
+
+        <!-- ───────── EXPERIENCIA ───────── -->
+        <section class="seccion" id="experiencia">
+            <p class="etiqueta" data-rev><span class="num">{num('experiencia')}</span>{t.experiencia.etiqueta}</p>
+            <h2 class="titulo" data-palabras>{t.experiencia.titulo[0]} <em>{t.experiencia.titulo[1]}</em></h2>
+            <ol class="tiempo">
+                {
+                    t.experiencia.items.map((h) => (
+                        <li class:list={['hito', { 'hito-actual': h.actual }]} data-rev>
+                            <span class="hito-periodo">{h.periodo}</span>
+                            <div class="hito-cuerpo">
+                                <h3>{h.titulo}</h3>
+                                <p class="hito-lugar">{h.lugar}</p>
+                                {h.logros.length > 0 && (
+                                    <ul class="hito-logros">
+                                        {h.logros.map((l) => (
+                                            <li>{l}</li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </div>
+                        </li>
+                    ))
+                }
+            </ol>
+        </section>
+
+        <!-- ───────── STACK ───────── -->
+        <section class="seccion" id="stack">
+            <p class="etiqueta" data-rev><span class="num">{num('stack')}</span>{t.stack.etiqueta}</p>
+            <h2 class="titulo" data-palabras>{t.stack.titulo[0]} <em>{t.stack.titulo[1]}</em></h2>
+            <div class="stack">
+                {
+                    STACK.map((g, gi) => (
+                        <div class="grupo" data-rev>
+                            <div class="grupo-cab">
+                                <span class="grupo-num">{String(gi + 1).padStart(2, '0')}</span>
+                                <h3 class="grupo-titulo">{tr(g.titulo, idioma)}</h3>
+                            </div>
+                            <ul class="tecnos">
+                                {g.items.map((it, i) => (
+                                    <li class="tecno" data-i={i} data-marca={colorMarca(it.icono)}>
+                                        <Icono nombre={it.icono} texto={it.nombre} />
+                                        <span class="tecno-nombre">{it.nombre}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <!-- ───────── FORMACIÓN ───────── -->
+        <section class="seccion" id="formacion">
+            <p class="etiqueta" data-rev><span class="num">{num('formacion')}</span>{t.formacion.etiqueta}</p>
+            <h2 class="titulo" data-palabras>{t.formacion.titulo[0]} <em>{t.formacion.titulo[1]}</em></h2>
+            <ul class="certs">
+                {
+                    t.formacion.items.map((c) => {
+                        const Fila = c.enlace ? 'a' : 'div';
+                        return (
+                            <li class="cert" data-rev>
+                                <Fila class="cert-fila" {...(c.enlace ? { href: c.enlace, ...externo } : {})}>
+                                    <span class="cert-anio">{c.anio}</span>
+                                    <span class="cert-titulo">{c.titulo}</span>
+                                    <span class="cert-emisor">{c.emisor}</span>
+                                </Fila>
+                            </li>
+                        );
+                    })
+                }
+            </ul>
+        </section>
+
+        <!-- ───────── CONTACTO ───────── -->
+        <section class="seccion contacto" id="contacto">
+            <p class="etiqueta" data-rev><span class="num">{num('contacto')}</span>{t.contacto.etiqueta}</p>
+            <div class="contacto-caja" data-rev>
+                <div>
+                    <h2 class="contacto-titulo">{t.contacto.titulo}</h2>
+                    <p class="contacto-texto">{t.contacto.texto}</p>
+                </div>
+                <div class="contacto-acciones">
+                    {
+                        CONTACTO.correo && (
+                            <div class="contacto-linea">
+                                <a class="contacto-correo" href={`mailto:${CONTACTO.correo}`}>
+                                    {CONTACTO.correo}
+                                </a>
+                                <button class="copiar" id="copiar" type="button" aria-live="polite" data-correo={CONTACTO.correo}>
+                                    {t.ui.copiar}
+                                </button>
+                            </div>
+                        )
+                    }
+                    <ul class="redes">
+                        {
+                            CONTACTO.redes.map((r) => (
+                                <li>
+                                    <a class="boton" href={r.url} {...externo}>
+                                        <Icono nombre={r.icono} />
+                                        {r.nombre} <span aria-hidden="true">↗</span>
+                                    </a>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="pie">
+        <p>© {anio} {NOMBRE}</p>
+        <a href="#inicio">{t.ui.arriba}</a>
+    </footer>
+</Base>

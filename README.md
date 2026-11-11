@@ -1,44 +1,43 @@
 # Portafolio — Jean Paul Andrade Delgadillo
 
-Sitio estático (HTML, CSS y JavaScript sin dependencias ni paso de build).
+Sitio estático hecho con [Astro](https://astro.build), bilingüe (español e inglés) y sin dependencias en el navegador.
 
 ## Editar el contenido
 
-Todo el texto está en `scripts/contenido.js`: puesto, perfil, stack, experiencia, formación y contacto.
+| Qué | Dónde |
+| --- | --- |
+| Textos en español e inglés (perfil, experiencia, formación, contacto) | `src/i18n/textos.ts` |
+| Correo, redes, foto, stack y prototipos del laboratorio | `src/data/perfil.ts` |
+| Estilos | `src/styles/global.css` |
+| Animaciones | `src/scripts/main.ts` |
 
-### Poner tu foto
+### Añadir un prototipo o experimento
 
-1. Guarda la foto (cuadrada, mínimo 800×800 px, `.jpg` o `.webp`) en `img/foto.jpg`.
-2. En `scripts/contenido.js` cambia `foto: ''` por `foto: 'img/foto.jpg'`.
+En `src/data/perfil.ts`, dentro de `PROYECTOS`, copia el ejemplo del comentario y rellénalo
+(`repo` con el enlace de GitHub y `demo` con la URL publicada, por ejemplo en Vercel).
+Mientras la lista esté vacía, la sección muestra "Próximamente".
 
-La foto aparece en el centro del globo animado, en blanco y negro, y toma color al pasar el cursor.
+### Idioma
+
+- `/` es español y `/en` inglés.
+- En la primera visita, si el navegador no está en español, se redirige a `/en`.
+- El selector ES / EN de la cabecera guarda la elección.
 
 ## Ver en local
 
 ```bash
-python3 -m http.server 8080
-# abre http://localhost:8080
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # genera dist/
+npm run preview  # sirve dist/
 ```
 
 ## Publicar en Vercel
 
-### Opción A — desde GitHub (recomendada, se redespliega con cada push)
+`vercel.json` ya indica el framework (Astro), el comando de build y la carpeta `dist`.
+Cada `git push` a `main` publica en producción; cada rama genera una vista previa.
 
-1. Crea un repositorio en tu cuenta de GitHub y sube esta carpeta.
-2. En [vercel.com/new](https://vercel.com/new) importa el repositorio.
-3. Configuración: **Framework Preset: Other**, sin *Build Command*, *Output Directory* vacío (raíz).
-4. Pulsa **Deploy**.
-
-### Opción B — desde la terminal
-
-```bash
-npx vercel        # despliegue de prueba
-npx vercel --prod # producción
-```
-
-## Qué incluye `vercel.json`
-
-- **Cabeceras de seguridad:** Content-Security-Policy estricta (sin `unsafe-inline`), HSTS, `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy` y `Cross-Origin-Opener-Policy`.
-- **URLs limpias** y página `404.html` propia.
-
-Si añades recursos de otros dominios (imágenes externas, analítica), amplía la CSP en `vercel.json`.
+`vercel.json` también define las cabeceras de seguridad: CSP estricta sin `unsafe-inline`, HSTS,
+`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy` y
+`Cross-Origin-Opener-Policy`. Por eso no se usan estilos ni scripts en línea: si añades recursos de
+otros dominios, amplía la CSP.

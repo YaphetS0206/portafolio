@@ -13,7 +13,9 @@ Desktop.ini
 *.swo
 *~
 
-# Vercel y Node
+# Astro, Vercel y Node
+dist/
+.astro/
 .vercel/
 node_modules/
 npm-debug.log*
