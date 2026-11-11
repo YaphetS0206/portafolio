@@ -1227,3 +1227,7 @@ a.enlace:hover { color: var(--acento); }
     .js .luz { color: var(--texto) !important; }
     a[href^='http']::after { content: ' (' attr(href) ')'; font-size: 0.8em; text-transform: none; letter-spacing: 0; }
 }
+
+/* Botón de descarga del CV: icono de trazo, no de relleno */
+.boton-cv .icono { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.35s var(--curva); }
+.boton-cv:hover .icono { transform: translateY(2px); }
